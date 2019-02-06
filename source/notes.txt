@@ -1,0 +1,2 @@
+mAppSerID: The port ID for Serial comms. Used in Serial_Print and derivatives
+OSAEvent_Set: Used to set flags for the current App thread

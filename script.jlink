@@ -1,0 +1,7 @@
+ExitOnError 1
+r
+h
+loadfile "/home/jacob/git/FRDMK4W1Z-GenFsk-BasicComms/frdmkw41z_wireless_examples_genfsk_connectivity_test_freertos/Debug/frdmkw41z_wireless_examples_genfsk_connectivity_test_freertos.hex"
+qc
+
+qc
