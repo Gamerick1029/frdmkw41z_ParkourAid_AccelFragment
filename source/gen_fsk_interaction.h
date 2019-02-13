@@ -125,7 +125,7 @@ typedef void (* pArbitraryHookNotification) (ct_event_t);
 /*tx power*/
 #define gGenFskMaxTxPowerLevel_c     (0x20)
 #define gGenFskMinTxPowerLevel_c     (0x00)
-#define gGenFskDefaultTxPowerLevel_c (0x01)
+#define gGenFskDefaultTxPowerLevel_c (0x10)
 
 /*channel*/
 #define gGenFskMaxChannel_c     (0x7F)

@@ -79,19 +79,20 @@
 									<listOptionValue builtIn="false" value="PRINTF_FLOAT_ENABLE=0"/>
 									<listOptionValue builtIn="false" value="__MCUXPRESSO"/>
 									<listOptionValue builtIn="false" value="__USE_CMSIS"/>
+									<listOptionValue builtIn="false" value="SDK_OS_FREE_RTOS"/>
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.undef.symbol.2103325260" name="Undefined symbols (-U)" superClass="gnu.c.compiler.option.preprocessor.undef.symbol"/>
 								<option id="gnu.c.compiler.option.include.paths.1966107115" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="../CMSIS"/>
 									<listOptionValue builtIn="false" value="../drivers"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
-									<listOptionValue builtIn="false" value="../CMSIS"/>
+									<listOptionValue builtIn="false" value="../freertos"/>
 									<listOptionValue builtIn="false" value="../board"/>
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../source/accel"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../framework/OSAbstraction/Interface"/>
 									<listOptionValue builtIn="false" value="../framework/common"/>
-									<listOptionValue builtIn="false" value="../freertos"/>
 									<listOptionValue builtIn="false" value="../framework/GPIO"/>
 									<listOptionValue builtIn="false" value="../framework/Keyboard/Interface"/>
 									<listOptionValue builtIn="false" value="../framework/TimersManager/Interface"/>
@@ -153,16 +154,16 @@
 								<option id="com.crt.advproject.gas.arch.1401581180" name="Architecture" superClass="com.crt.advproject.gas.arch" value="com.crt.advproject.gas.target.cm0plus" valueType="enumerated"/>
 								<option id="gnu.both.asm.option.flags.crt.1359430263" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" value="-c -x assembler-with-cpp -D__REDLIB__" valueType="string"/>
 								<option id="gnu.both.asm.option.include.paths.91925257" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="../CMSIS"/>
 									<listOptionValue builtIn="false" value="../drivers"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
-									<listOptionValue builtIn="false" value="../CMSIS"/>
+									<listOptionValue builtIn="false" value="../freertos"/>
 									<listOptionValue builtIn="false" value="../board"/>
 									<listOptionValue builtIn="false" value="../source"/>
 									<listOptionValue builtIn="false" value="../source/accel"/>
 									<listOptionValue builtIn="false" value="../"/>
 									<listOptionValue builtIn="false" value="../framework/OSAbstraction/Interface"/>
 									<listOptionValue builtIn="false" value="../framework/common"/>
-									<listOptionValue builtIn="false" value="../freertos"/>
 									<listOptionValue builtIn="false" value="../framework/GPIO"/>
 									<listOptionValue builtIn="false" value="../framework/Keyboard/Interface"/>
 									<listOptionValue builtIn="false" value="../framework/TimersManager/Interface"/>
@@ -322,9 +323,10 @@
 					</folderInfo>
 					<folderInfo id="com.crt.advproject.config.exe.debug.1636379416.19815635" name="/" resourcePath="drivers">
 						<toolChain id="com.crt.advproject.toolchain.exe.debug.2120918347" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.debug" unusedChildren="">
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.debug" name="ARM-based MCU (Debug)" superClass="com.crt.advproject.platform.exe.debug"/>
 							<tool id="com.crt.advproject.cpp.exe.debug.1184800483" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.exe.debug.485720475"/>
 							<tool id="com.crt.advproject.gcc.exe.debug.1436259226" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.debug.1944574760">
-								<option id="gnu.c.compiler.option.include.paths.1268645022" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+								<option id="gnu.c.compiler.option.include.paths.1268645022" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../drivers"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
 									<listOptionValue builtIn="false" value="../CMSIS"/>
@@ -363,7 +365,7 @@
 								<inputType id="com.crt.advproject.compiler.input.1837072650" superClass="com.crt.advproject.compiler.input"/>
 							</tool>
 							<tool id="com.crt.advproject.gas.exe.debug.1153036716" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.debug.1970172163">
-								<option id="gnu.both.asm.option.include.paths.1996637923" superClass="gnu.both.asm.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+								<option id="gnu.both.asm.option.include.paths.1996637923" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../drivers"/>
 									<listOptionValue builtIn="false" value="../utilities"/>
 									<listOptionValue builtIn="false" value="../CMSIS"/>
@@ -409,6 +411,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry excluding="heap_1.c|heap_2.c|heap_3.c|heap_5.c" flags="LOCAL|VALUE_WORKSPACE_PATH" kind="sourcePath" name="freertos"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="CMSIS"/>
 						<entry excluding="drivers" flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="board"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="drivers"/>
@@ -428,21 +431,6 @@
 		<project id="frdmkw41z_wireless_examples_genfsk_connectivity_test_freertos.null.928406682" name="frdmkw41z_wireless_examples_genfsk_connectivity_test_freertos" projectType="com.crt.advproject.projecttype.exe"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.1231426144;com.crt.advproject.config.exe.release.1231426144.;com.crt.advproject.gas.exe.release.1136704903;com.crt.advproject.assembler.input.1091413653">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.1231426144;com.crt.advproject.config.exe.release.1231426144.;com.crt.advproject.gcc.exe.release.1052678825;com.crt.advproject.compiler.input.1908659314">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.debug.1636379416;com.crt.advproject.config.exe.debug.1636379416.;com.crt.advproject.gcc.exe.debug.1944574760;com.crt.advproject.compiler.input.283559656">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.debug.1636379416;com.crt.advproject.config.exe.debug.1636379416.;com.crt.advproject.gas.exe.debug.1970172163;com.crt.advproject.assembler.input.301232192">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
-		</scannerConfigBuildInfo>
-	</storageModule>
 	<storageModule moduleId="com.crt.config">
 		<projectStorage>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;TargetConfig&gt;
@@ -533,9 +521,24 @@
 	<storageModule moduleId="com.nxp.mcuxpresso.core.datamodels">
 		<sdkName>SDK_2.x_FRDM-KW41Z</sdkName>
 		<sdkVersion>2.2.0</sdkVersion>
-		<sdkComponents>nullplatform.drivers.common.MKW41Z4;platform.Include_common;platform.drivers.clock.MKW41Z4;platform.drivers.lpuart.MKW41Z4;platform.utilities.debug_console.MKW41Z4;</sdkComponents>
+		<sdkComponents>nullplatform.drivers.common.MKW41Z4;platform.Include_common;platform.drivers.clock.MKW41Z4;platform.drivers.lpuart.MKW41Z4;platform.utilities.debug_console.MKW41Z4;middleware.freertos.MKW41Z4;middleware.template_application.freertos.MKW41Z4;</sdkComponents>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
 		<buildTargets/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.1231426144;com.crt.advproject.config.exe.release.1231426144.;com.crt.advproject.gcc.exe.release.1052678825;com.crt.advproject.compiler.input.1908659314">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.1231426144;com.crt.advproject.config.exe.release.1231426144.;com.crt.advproject.gas.exe.release.1136704903;com.crt.advproject.assembler.input.1091413653">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.debug.1636379416;com.crt.advproject.config.exe.debug.1636379416.;com.crt.advproject.gcc.exe.debug.1944574760;com.crt.advproject.compiler.input.283559656">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.debug.1636379416;com.crt.advproject.config.exe.debug.1636379416.;com.crt.advproject.gas.exe.debug.1970172163;com.crt.advproject.assembler.input.301232192">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
+		</scannerConfigBuildInfo>
 	</storageModule>
 </cproject>

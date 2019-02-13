@@ -160,6 +160,27 @@ static ct_rx_indication_t mAppRxLatestPacket;
 /*latest generic fsk event status*/
 static genfskEventStatus_t mAppGenfskStatus;
 
+/* Debug messages */
+
+static const char* const debugMessages[] = {
+		"Rx Done",
+		"Tx Done",
+		"Seq Timeout",
+		"Rx Failed",
+
+		"Timer Expired",
+		"Uart Event",
+		"Accelerometer Data request",
+		"Self event",
+
+		"Wakeup event",
+
+		"Max event"
+};
+
+static bool_t debug = false;
+
+
 /* extern Serial instance Id */
 extern uint8_t mAppSerId;
 /* extern Timer Id */
@@ -204,8 +225,8 @@ void main_task(uint32_t param)
         /*Generate GenFSK callbacks*/
         App_InitApp();
 
-        /*start serial flashing using all LEDs*/
-        LED_StartSerialFlash(LED1);
+        /* Turn on LED */
+        Led3Flashing();
         
         /*initialize the application interface id*/
         Serial_InitInterface(&mAppSerId, 
@@ -220,7 +241,7 @@ void main_task(uint32_t param)
         /*allocate a timer*/
         mAppTmrId = TMR_AllocateTimer();
 
-    	Serial_Print(mAppSerId, "\r\nReady to send...\r\n", 1);
+    	Serial_Print(mAppSerId, "Ready to communicate with the PC...\r\n", 1);
     }
     
     /* Call application task */
@@ -262,34 +283,41 @@ void App_Thread (uint32_t param)
 ********************************************************************************** */
 void App_HandleEvents(osaEventFlags_t flags)
 {
+
+	if (debug){
+		for (uint8_t i = 0; i <= 16; i++){
+			if (flags & (1 << i)){
+				Serial_Print(mAppSerId, debugMessages[i], 1);
+				Serial_Print(mAppSerId, "\r\n", 1);
+			}
+		}
+	}
+
+
     if(flags & EvtRxDone_c) {
-    	Serial_Print(mAppSerId, "RxDone\r\n", 1);
     	IT_HandlePacket();
     }
     if(flags & EvtTxDone_c) {
-    	Serial_Print(mAppSerId, "TxDone\r\n", 1);
+
     }
     if(flags & EvtRxFailed_c) {
-    	Serial_Print(mAppSerId, "RxFailed\r\n", 1);
+
     }
     if(flags & EvtSeqTimeout_c) {
-    	Serial_Print(mAppSerId, "SeqTimeout\r\n", 1);
-    }
 
+    }
     if(flags & gCtEvtUart_c) {
     	App_UpdateUartData(&mAppUartData);
     	App_ResolveUartRx();
     }
-
     if (flags & gCtEvtAccelRequest_c) {
     	App_ReceiveAccelData();
     }
-
     if(flags & gCtEvtTimerExpired_c) {
-    	Serial_Print(mAppSerId, "TimerExpired\r\n", 1);
+
     }
     if(flags & gCtEvtSelfEvent_c) {
-    	Serial_Print(mAppSerId, "SelfEvent\r\n", 1);
+
     }
 
 }
@@ -309,12 +337,18 @@ static void App_ResolveUartRx(){
 		Serial_Print(mAppSerId, "Resetting state\r\n", true);
 		state = stateNone;
 		return;
-	} else if (mAppUartData == 'd'){ //Print number of devices
+	} else if (mAppUartData == 'n'){ //Print number of devices
 		Serial_PrintDec(mAppSerId, IT_GetNumberOfDevices());
 		Serial_Print(mAppSerId, "\r\n", true);
+		return;
 	} else if (mAppUartData == 'a'){
 		uint8_t message[1] = {gAccelDataRequestOpcode_c};
 		IT_TxWithPayload(message, 1, broadcastID);
+		return;
+	} else if (mAppUartData == '+'){
+		debug = true;
+	} else if (mAppUartData == '-'){
+		debug = false;
 	}
 
 	//Message Builder state machine

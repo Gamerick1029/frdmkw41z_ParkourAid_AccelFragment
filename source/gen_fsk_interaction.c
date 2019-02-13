@@ -291,13 +291,15 @@ void IT_HandlePacket(){
 			switch (gRxPacket.payload[gBytePayloadStart_c]){
 			case gAccelDataOpcode_c:
 				;
-				uint8_t message[5] = {
+				uint8_t message[6] = {
 						gAccelDataOpcode_c,
 						gRxPacket.payload[gBytePayloadStart_c + 1],
 						gRxPacket.payload[gBytePayloadStart_c + 2],
-						gRxPacket.payload[gBytePayloadStart_c + 3]
+						gRxPacket.payload[gBytePayloadStart_c + 3],
+						'\n', //So that using readline on the serial port behaves
+						'\0', //To terminate it as a string to make Serial_Print behave
 				};
-				IT_TxWithPayload(message, 5, broadcastID);
+				Serial_Print(mAppSerId, (char *)message, 1);
 			case gIDregReqOpcode_c:
 				//TODO: Device registering
 				break;
